@@ -1,29 +1,16 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
-
-
-from glob import glob
-import subprocess
-import shutil
-import time
-import csv
 import os
 
-from pymatgen.io.vasp.inputs import Incar, Kpoints, Potcar, Poscar
-from pymatgen.symmetry.analyzer import SpacegroupAnalyzer
-from pymatgen.io.vasp.outputs import Vasprun
 from matplotlib import pyplot as plt
-from dotenv import load_dotenv
-from pymatgen import Structure
-from pymatgen import MPRester
-import pandas as pd
-import numpy as np
+
+from pymatgen.io.vasp.outputs import Vasprun
+from pymatgen.io.vasp.outputs import BSVasprun
 
 from pymatgen.electronic_structure.plotter import DosPlotter
 from pymatgen.electronic_structure.plotter import BSPlotter
-from pymatgen.io.vasp import BSVasprun
+
 
 
 """
@@ -82,7 +69,7 @@ import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 
-from pymatgen.io.vasp import Vasprun
+from pymatgen.io.vasp.outputs import Vasprun
 from pymatgen.electronic_structure.plotter import DosPlotter
 
 
@@ -117,8 +104,8 @@ from pymatgen.electronic_structure.plotter import BSPlotter
 
 v = BSVasprun('./vasprun.xml', parse_projected_eigen = True)
 bs = v.get_band_structure(kpoints_filename = './KPOINTS', line_mode = True)
-bsplot = BSPlotter(bs)
 
+bsplot = BSPlotter(bs)
 bsplot.get_plot(zero_to_efermi = True, ylim = [-2,2]).savefig('plots/band.pdf')
 
 
