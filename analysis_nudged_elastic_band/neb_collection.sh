@@ -4,19 +4,18 @@
 ==================================================================================================
 
 
-# analysis movie POSCAR
+# analysis of initial structures
 $VTST/nebmovie.pl; mkdir nebmovie_POSCAR; mv movie* nebmovie_POSCAR;
 
-# analysis movie CONTCAR
+# analysis of final structures
 $VTST/nebmovie.pl; mkdir nebmovie_CONTCAR; mv movie* nebmovie_CONTCAR;
 
 # analysis force, energy, barrier, magnetization
 $VTST/nebef.pl
-$VTST/nebef.pl > nebef..dat
+$VTST/nebef.pl > nebef.dat
 $VTST/nebefs.pl
 $VTST/nebefs.pl > nebefs.dat
-
-grep 'max atom' 01/OUTCAR
+grep 'max atom' 01/OUTCAR > nebconverged.dat
 
 
 
@@ -24,12 +23,10 @@ grep 'max atom' 01/OUTCAR
 IMAGE = 1
 ==================================================================================================
 **********************(PBC 꺼져 있는지 check)****************************
-**********************(PBC 꺼져 있는지 check)****************************
-**********************(PBC 꺼져 있는지 check)****************************
 
  $VTST/nebmake.pl POSCAR_IS POSCAR_FS 1 
 
- #======================================================================
+#======================================================================
 # Initialization (After POSCARs, INCAR, KPOINTS, hostfile, run, ready)
 #======================================================================
 
@@ -42,15 +39,19 @@ cp INCAR.init KPOINTS run hostfile 01/init/; mv 01/init/INCAR.init 01/init/INCAR
 #==================
 
 # backup
-mkdir run6;
-cp -R 00 01 02 run6;
-mv stdout  vasprun.xml  run6
+mkdir run1;
+cp -R 00 01 02 run1;
+mv stdout  vasprun.xml  run1
 
-# clean subdir
-cd 01;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+# prepare for the continued calculation / case 1 (normal termination)
+cd 01; pwd; ll;
+~/cleanvasp;
+mv -f CONTCAR POSCAR; ll; cd ../; pwd;
 
-# clean subdir/init and copy updated POSCAR and CHGCAR
-cd 01/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
+# prepare for the continued calculation / case 2 (bad termination, need spin-restricted calculation)
+cd 01/spin-res;pwd;ll;
+~/cleanvasp;
+rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
 
 
 
