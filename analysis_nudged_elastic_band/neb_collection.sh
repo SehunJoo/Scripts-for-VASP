@@ -11,11 +11,10 @@ $VTST/nebmovie.pl; mkdir nebmovie_POSCAR; mv movie* nebmovie_POSCAR;
 $VTST/nebmovie.pl; mkdir nebmovie_CONTCAR; mv movie* nebmovie_CONTCAR;
 
 # analysis force, energy, barrier, magnetization
-$VTST/nebef.pl
-$VTST/nebef.pl > nebef.dat
-$VTST/nebefs.pl
-$VTST/nebefs.pl > nebefs.dat
-grep 'max atom' 01/OUTCAR > nebconverged.dat
+grep 'max atom' 01/OUTCAR > nebconverged.dat; grep 'max atom' 01/OUTCAR
+$VTST/nebef.pl > nebef.dat; $VTST/nebef.pl
+$VTST/nebefs.pl > nebefs.dat; $VTST/nebefs.pl
+
 
 
 
