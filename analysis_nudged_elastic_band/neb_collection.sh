@@ -1,5 +1,8 @@
 
 ==================================================================================================
+# Collection of commands for analyzing NEB results
+==================================================================================================
+
 
 # analysis movie POSCAR
 $VTST/nebmovie.pl; mkdir nebmovie_POSCAR; mv movie* nebmovie_POSCAR;
@@ -9,9 +12,9 @@ $VTST/nebmovie.pl; mkdir nebmovie_CONTCAR; mv movie* nebmovie_CONTCAR;
 
 # analysis force, energy, barrier, magnetization
 $VTST/nebef.pl
-$VTST/nebef.pl > nebef
+$VTST/nebef.pl > nebef..dat
 $VTST/nebefs.pl
-$VTST/nebefs.pl > nebefs
+$VTST/nebefs.pl > nebefs.dat
 
 grep 'max atom' 01/OUTCAR
 
