@@ -53,7 +53,8 @@ shutil.copy(f'{dirname_is}/CONTCAR', f'{dirname_wd}/POSCAR_IS')
 shutil.copy(f'{dirname_is}/OUTCAR', f'{dirname_wd}/OUTCAR_IS')
 shutil.copy(f'{dirname_fs}/CONTCAR',f'{dirname_wd}/POSCAR_FS')
 shutil.copy(f'{dirname_fs}/OUTCAR', f'{dirname_wd}/OUTCAR_FS')
-print(f'current working directory:\n{dirname_wd}\n')
+print()
+print(f'current working directory:\n{dirname_wd}\n\n')
 print(*os.listdir(dirname_wd), sep='\n')
 print()
 
@@ -64,11 +65,9 @@ os.system(f'$VTST/nebmake.pl {dirname_wd}/POSCAR_IS {dirname_wd}/POSCAR_FS {nimg
 shutil.copy(f'{dirname_wd}/OUTCAR_IS', f'{dirname_wd}/00/OUTCAR')
 shutil.copy(f'{dirname_wd}/OUTCAR_FS', f'{dirname_wd}/{int(nimgs)+1:0>2}/OUTCAR')
 print()
-print(f'current working directory:\n{dirname_wd}\n')
-print('\n')
+print(f'current working directory:\n{dirname_wd}\n\n')
 print(*os.listdir(dirname_wd), sep='\n')
 print()
-
 for img in range(0, int(nimgs)+2):
     print(f'{img:0>2} directory')
     print(*os.listdir(f'{dirname_wd}/{img:0>2}'),sep='\n')
