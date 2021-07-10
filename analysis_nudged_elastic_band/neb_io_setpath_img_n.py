@@ -2,6 +2,10 @@
 Generate input files for neb calculations
 from result files of structural optimization for intial and final states.
 
+Prerequisite:
+- Install VTST(Transition State Tools for VASP, https://theory.cm.utexas.edu/vtsttools/)
+- Set environmental variable VTST
+
 Author: Se Hun Joo
 """
 
