@@ -2,6 +2,10 @@
 Increase the number of NEB images
 from result files of previous NEB calculation.
 
+Prerequisite:
+- Install VTST(Transition State Tools for VASP, https://theory.cm.utexas.edu/vtsttools/)
+- Set environmental variable VTST
+
 Author: Se Hun Joo
 """
 
