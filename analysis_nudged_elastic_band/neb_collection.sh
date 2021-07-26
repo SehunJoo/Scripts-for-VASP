@@ -108,6 +108,59 @@ cd 03/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR 
 
 
 
+==================================================================================================
+IMAGE = 5
+==================================================================================================
+
+export IMG1DIR=/scratch2/x1552jsh/2_LCO/6_LCO_NEB/3_TSH_v1_to_v2_D3-11/2-1_IS-FS_1_geomopt
+
+mkdir 00 01 02 03 04;ll;
+
+# copy
+cp POSCAR_IS 00/POSCAR;
+cp POSCAR_FS 04/POSCAR;
+cp $IMG1DIR/01/POSCAR $IMG1DIR/01/CHGCAR $IMG1DIR/01/WAVECAR ./02
+
+# make POSCARs (PBC 켜져있는지 check)
+mkdir 01/nebmake; cd 01/nebmake; pwd; $VTST/nebmake.pl ../../00/POSCAR ../../02/POSCAR 1; ll; cp 01/POSCAR ../;cd ../;pwd;ll;cd ../;pwd;
+mkdir 03/nebmake; cd 03/nebmake; pwd; $VTST/nebmake.pl ../../02/POSCAR ../../04/POSCAR 1; ll; cp 01/POSCAR ../;cd ../;pwd;ll;cd ../;pwd;
+
+#======================================================================
+# Initialization (After POSCARs, INCAR, KPOINTS, hostfile, run, ready)
+#======================================================================
+
+rm -rf 01/init; mkdir 01/init; cp 01/POSCAR 01/init/;
+rm -rf 02/init; mkdir 02/init; cp 02/POSCAR 02/init/;
+rm -rf 03/init; mkdir 03/init; cp 03/POSCAR 03/init/;
+
+cp INCAR.init KPOINTS run hostfile 01/init/; mv 01/init/INCAR.init 01/init/INCAR;
+cp INCAR.init KPOINTS run hostfile 02/init/; mv 02/init/INCAR.init 02/init/INCAR;
+cp INCAR.init KPOINTS run hostfile 03/init/; mv 03/init/INCAR.init 03/init/INCAR;
+
+#==================
+# After completion
+#==================
+
+# backup
+mkdir run3;
+cp -R 00 01 02 03 04 05 06 run3;
+mv stdout  vasprun.xml  run2
+
+# clean subdir
+cd 01;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+cd 02;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+cd 03;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+cd 04;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+cd 05;pwd;ll;~/cleanvasp;mv -f CONTCAR POSCAR;ll; cd ..;pwd;
+
+
+# clean subdir/init and copy updated POSCAR and CHGCAR
+cd 01/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
+cd 01/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
+cd 02/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
+cd 03/init;pwd;ll;~/cleanvasp;rm -rf CHGCAR CONTCAR POSCAR WAVECAR;cp ../POSCAR ../CHGCAR ./;ll; cd ../..;pwd;
+
+
 
 ==================================================================================================
 IMAGE = 7
