@@ -11,6 +11,7 @@ from collections import defaultdict
 
 from pymatgen.io.vasp.outputs import Vasprun, Outcar
 
+
 def vasprun_from_cwd():
     """
     Read the vasprun.xml file from the current working directory.
@@ -42,15 +43,14 @@ def analysis_magnetic():
     """
     Analze magnetization at the final ionic step
     """ 
-    
     natoms = len(vasprun.atomic_symbols)
     elements = list(dict.fromkeys(vasprun.atomic_symbols))
+    
     
     def mag_atom():
         """
         Print magnetization of each atom.
         """
-        
         print("Magnetization (atom):\n")
         print(
             "index",
@@ -71,13 +71,12 @@ def analysis_magnetic():
                 sep = "\t"
             )
         print("\n")
-    
    
+
     def mag_element():
         """
         Print average magnetization of each element. 
         """
-        
         mag_elements = defaultdict(list)
         mag_elements_avg = {}
         
@@ -89,13 +88,12 @@ def analysis_magnetic():
         print("Magnetization (element):\n")
         print(mag_elements_avg)
         print("\n")
-        
-    
+  
+
     def mag_total():
         """
         Print total magnetization
         """
-        
         mag_tot = 0
         
         for idx in range(len(outcar.magnetization)):
@@ -105,8 +103,8 @@ def analysis_magnetic():
         print(f"{mag_tot:.3f}", "\t", "# sum of atomic magnetization") # sum of magnetization of each ion
         print(f"{outcar.total_mag:.3f}") # printed in energy electronic step "number of electron\s+\S+\s+magnetization\s+(" r"\S+)"
         print("\n")
-    
-    
+   
+
     def mag_write_file():
         """
         Write the 'vasp_assign_spin.pl' file in the current working directory.
@@ -126,9 +124,10 @@ def analysis_magnetic():
         with open("vasp_assign_spin.pl", "wt") as f:
             f.write("\n".join(lines))
         print("\n")
-    
-    
+   
+
     """ Sub main"""
+    
     mag_atom()
     mag_element()
     mag_total()
