@@ -59,7 +59,8 @@ def analysis_magnetic():
             "s",
             "p",
             "d",
-            "tot"
+            "tot",
+            sep = "\t"
         )
         for idx in range(len(outcar.magnetization)):
             print(
