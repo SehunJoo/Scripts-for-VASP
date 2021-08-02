@@ -110,7 +110,6 @@ def analysis_magnetic():
         """
         Write the 'vasp_assign_spin.pl' file in the current working directory.
         """
-        
         lines = []
         
         print("Write the 'vasp_assign_spin.pl' file in the current working directory.")
