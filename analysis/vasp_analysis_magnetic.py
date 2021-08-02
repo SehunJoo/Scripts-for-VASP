@@ -16,16 +16,17 @@ def vasprun_from_cwd():
     """
     Read the vasprun.xml file from the current working directory.
     """
-    vasprun = Vasprun("./vasprun.xml",
-                      ionic_step_skip = None,
-                      ionic_step_offset = 0,
-                      parse_dos = False,
-                      parse_eigen = False,
-                      parse_projected_eigen = False,
-                      parse_potcar_file = False,
-                      occu_tol = 1e-08,
-                      exception_on_bad_xml = True
-                     )
+    vasprun = Vasprun(
+        "./vasprun.xml",
+        ionic_step_skip = None,
+        ionic_step_offset = 0,
+        parse_dos = False,
+        parse_eigen = False,
+        parse_projected_eigen = False,
+        parse_potcar_file = False,
+        occu_tol = 1e-08,
+        exception_on_bad_xml = True
+    )
 
     return vasprun
 
